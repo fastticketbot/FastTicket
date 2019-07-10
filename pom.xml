@@ -55,11 +55,6 @@
 			<version>2.3.08</version>
 		</dependency>
 		<dependency>
-			<groupId>com.jsoniter</groupId>
-			<artifactId>jsoniter</artifactId>
-			<version>0.9.23</version>
-		</dependency>
-		<dependency>
 			<groupId>net.dv8tion</groupId>
 			<artifactId>JDA</artifactId>
 			<version>4.BETA.0_19</version>
