@@ -24,7 +24,7 @@ public class CommandExecutor implements Runnable {
 			EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
 			meb.setColor(Constants.NO_COLOR_EMBED);
 			meb.setDescription("An error occoured while executing the command!");
-			event.getChannel().sendMessage(meb.build());
+			event.getChannel().sendMessage(meb.build()).queue();
 		}
 	}
 }

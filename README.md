@@ -11,6 +11,9 @@ Fast Ticket is an open source Discord bot which uses [JDA](https://github.com/DV
 - Open Ticket Tag: Whether or not the bot should tag the role (only works if role is set and the bot has correct permissions).
 - Reaction Message Id: This internal variable stores the message id the bot should look for to be able open a ticket.
 
+# Permissions
+- You need the Administrator permission to use commands that can modify bot settings.
+
 # Commands
 
 - -help : Shows the help message
