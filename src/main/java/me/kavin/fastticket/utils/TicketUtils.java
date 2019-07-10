@@ -9,6 +9,7 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONObject;
 
 import kong.unirest.Unirest;
+import me.kavin.fastticket.Main;
 import me.kavin.fastticket.consts.Constants;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
@@ -103,7 +104,9 @@ public class TicketUtils {
 				.addPermissionOverride(member, Arrays.asList(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE),
 						Collections.emptyList())
 				.addPermissionOverride(guild.getPublicRole(), Collections.emptyList(),
-						Arrays.asList(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE));
+						Arrays.asList(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE))
+				.addPermissionOverride(guild.getMember(Main.api.getShards().get(0).getSelfUser()),
+						Arrays.asList(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE), Collections.emptyList());
 
 		if (role != null) {
 			action.addPermissionOverride(role, Arrays.asList(Permission.MESSAGE_READ, Permission.MESSAGE_WRITE),
