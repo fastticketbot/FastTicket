@@ -56,7 +56,8 @@ public class DiscordListener extends ListenerAdapter {
 	@Override
 	public void onGuildMemberLeave(GuildMemberLeaveEvent event) {
 		for (TextChannel tc : event.getGuild().getTextChannels()) {
-			if (tc.getTopic().split("\\|")[1].equals(event.getUser().getId())) {
+			if (tc.getTopic() != null && tc.getTopic().startsWith("ticket|")
+					&& tc.getTopic().split("\\|")[1].equals(event.getUser().getId())) {
 				TicketUtils.postLogs("User left", event.getGuild().getIdLong(), event.getJDA().getSelfUser(),
 						event.getUser(), tc);
 				tc.delete().queue();
