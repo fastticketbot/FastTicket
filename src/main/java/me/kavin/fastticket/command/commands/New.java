@@ -25,7 +25,7 @@ public class New extends Command {
 		}
 
 		for (TextChannel tc : event.getGuild().getTextChannels())
-			if (tc.getName().startsWith("ticket-") && tc.getTopic().startsWith("ticket|"))
+			if (tc.getName().startsWith("ticket-") && tc.getTopic() != null && tc.getTopic().startsWith("ticket|"))
 				if (event.getAuthor().getId().equals(tc.getTopic().split("\\|")[1])) {
 					EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
 					meb.setDescription("You already have an open ticket.");
