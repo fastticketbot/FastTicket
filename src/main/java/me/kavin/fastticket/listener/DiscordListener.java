@@ -94,7 +94,7 @@ public class DiscordListener extends ListenerAdapter {
 					event.getReaction().removeReaction(event.getUser()).queue();
 
 					for (TextChannel tc : event.getGuild().getTextChannels())
-						if (tc.getName().startsWith("ticket-") && tc.getTopic().startsWith("ticket|"))
+						if (tc.getName().startsWith("ticket-") && tc.getTopic() != null && tc.getTopic().startsWith("ticket|"))
 							if (event.getUser().getId().equals(tc.getTopic().split("\\|")[1]))
 								return;
 
