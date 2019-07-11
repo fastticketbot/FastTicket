@@ -47,7 +47,7 @@ public class TicketUtils {
 			Collections.reverse(msgs);
 
 			for (Message msg : msgs) {
-				if (msg.getAuthor().isBot() || msg.getAuthor().isFake())
+				if (msg.getAuthor().isBot())
 					continue;
 				String content = msg.getContentDisplay().replace("\n", " ").replace("\r", " ");
 				List<Attachment> attachments = msg.getAttachments();
