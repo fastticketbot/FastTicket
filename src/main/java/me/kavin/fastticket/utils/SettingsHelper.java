@@ -1,6 +1,7 @@
 package me.kavin.fastticket.utils;
 
 import java.awt.Color;
+import java.util.List;
 
 import org.bson.Document;
 
@@ -149,7 +150,9 @@ public class SettingsHelper {
 		if (name == null)
 			return null;
 
-		return Main.api.getGuildById(guildId).getRolesByName(name, true).get(0);
+		List<Role> roles = Main.api.getGuildById(guildId).getRolesByName(name, true);
+
+		return roles.isEmpty() ? null : roles.get(0);
 	}
 
 	public void setTicketRole(long guildId, Role role) {
@@ -157,7 +160,7 @@ public class SettingsHelper {
 		MongoDatabase db = mongoHelper.getDatabase("guilds");
 		MongoCollection<Document> collection = mongoHelper.getCollection(db, "role");
 
-		mongoHelper.setValueString(collection, String.valueOf(guildId), role.getName());
+		mongoHelper.setValueString(collection, String.valueOf(guildId), role != null ? role.getName() : "none");
 	}
 
 	public TextChannel getLogsChannel(long guildId) {

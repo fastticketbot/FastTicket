@@ -1,5 +1,7 @@
 package me.kavin.fastticket.command.commands;
 
+import java.util.List;
+
 import me.kavin.fastticket.command.Command;
 import me.kavin.fastticket.utils.EmbedUtils;
 import me.kavin.fastticket.utils.PermissionCheck;
@@ -107,8 +109,9 @@ public class Value extends Command {
 						SettingsHelper.getInstance().setTicketRole(event.getGuild().getIdLong(), null);
 						meb.setDescription("Reset the role config.");
 					} else {
-						Role role = event.getGuild().getRolesByName(q, true).get(0);
-						if (role != null) {
+						List<Role> roles = event.getGuild().getRolesByName(q, true);
+						if (!roles.isEmpty()) {
+							Role role = roles.get(0);
 							SettingsHelper.getInstance().setTicketRole(event.getGuild().getIdLong(), role);
 							meb.setDescription("Set the role to " + role.getAsMention() + ".");
 						} else {
