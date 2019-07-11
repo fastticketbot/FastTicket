@@ -3,6 +3,7 @@ package me.kavin.fastticket.listener;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import me.kavin.fastticket.Main;
 import me.kavin.fastticket.botlist.BotListPoster;
+import me.kavin.fastticket.botlist.tasks.DivineDiscordBotsPostTask;
 import me.kavin.fastticket.command.Command;
 import me.kavin.fastticket.command.CommandExecutor;
 import me.kavin.fastticket.command.CommandManager;
@@ -39,6 +40,7 @@ public class DiscordListener extends ListenerAdapter {
 		new CommandManager();
 		{
 			ObjectArrayList<Runnable> tasks = new ObjectArrayList<>();
+			tasks.add(new DivineDiscordBotsPostTask());
 			new BotListPoster(tasks).initialize();
 		}
 	}
