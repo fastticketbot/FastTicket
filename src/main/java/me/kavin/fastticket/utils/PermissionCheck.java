@@ -10,7 +10,7 @@ public class PermissionCheck {
 	public static boolean doCheck(Member member, TextChannel tc) {
 		if (!member.hasPermission(Permission.ADMINISTRATOR)) {
 			EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(tc.getGuild().getIdLong());
-			meb.setDescription("You do not have permission to use this command!");
+			meb.setDescription("You need administrator permissons to use this command!");
 			tc.sendMessage(meb.build()).queue();
 		}
 		return member.hasPermission(Permission.ADMINISTRATOR);
