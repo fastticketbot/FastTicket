@@ -3,6 +3,7 @@ package me.kavin.fastticket.listener;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import me.kavin.fastticket.Main;
 import me.kavin.fastticket.botlist.BotListPoster;
+import me.kavin.fastticket.botlist.tasks.DiscordBotsPostTask;
 import me.kavin.fastticket.botlist.tasks.DivineDiscordBotsPostTask;
 import me.kavin.fastticket.command.Command;
 import me.kavin.fastticket.command.CommandExecutor;
@@ -41,6 +42,7 @@ public class DiscordListener extends ListenerAdapter {
 		{
 			ObjectArrayList<Runnable> tasks = new ObjectArrayList<>();
 			tasks.add(new DivineDiscordBotsPostTask());
+			tasks.add(new DiscordBotsPostTask());
 			new BotListPoster(tasks).initialize();
 		}
 	}
@@ -94,7 +96,8 @@ public class DiscordListener extends ListenerAdapter {
 					event.getReaction().removeReaction(event.getUser()).queue();
 
 					for (TextChannel tc : event.getGuild().getTextChannels())
-						if (tc.getName().startsWith("ticket-") && tc.getTopic() != null && tc.getTopic().startsWith("ticket|"))
+						if (tc.getName().startsWith("ticket-") && tc.getTopic() != null
+								&& tc.getTopic().startsWith("ticket|"))
 							if (event.getUser().getId().equals(tc.getTopic().split("\\|")[1]))
 								return;
 

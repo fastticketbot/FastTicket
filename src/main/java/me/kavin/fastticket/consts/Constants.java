@@ -21,6 +21,7 @@ public class Constants {
 		GITHUB_AUTH_HEADER = prop.getProperty("GITHUB_AUTH_HEADER");
 		EMOJI_ID = Long.parseLong(prop.getProperty("EMOJI_ID"));
 		DIVINE_DISCORD_BOTS_TOKEN = prop.getProperty("DIVINE_DISCORD_BOTS_TOKEN");
+		DISCORD_BOTS_TOKEN = prop.getProperty("DISCORD_BOTS_TOKEN");
 	}
 
 	public static final String BOT_TOKEN;
@@ -32,6 +33,8 @@ public class Constants {
 	public static final long EMOJI_ID;
 
 	public static final String DIVINE_DISCORD_BOTS_TOKEN;
+
+	public static final String DISCORD_BOTS_TOKEN;
 
 	public static final Color DEFAULT_COLOR_EMBED = new Color(69, 73, 76);
 
