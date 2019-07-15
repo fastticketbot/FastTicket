@@ -8,6 +8,7 @@ import me.kavin.fastticket.botlist.tasks.DivineDiscordBotsPostTask;
 import me.kavin.fastticket.command.Command;
 import me.kavin.fastticket.command.CommandExecutor;
 import me.kavin.fastticket.command.CommandManager;
+import me.kavin.fastticket.consts.Constants;
 import me.kavin.fastticket.utils.Multithreading;
 import me.kavin.fastticket.utils.SettingsHelper;
 import me.kavin.fastticket.utils.TicketUtils;
@@ -92,7 +93,8 @@ public class DiscordListener extends ListenerAdapter {
 					return;
 
 				if (event.getMessageIdLong() == SettingsHelper.getInstance()
-						.getReactionMessageId(event.getGuild().getIdLong())) {
+						.getReactionMessageId(event.getGuild().getIdLong())
+						&& event.getReactionEmote().getIdLong() == Constants.EMOJI_ID) {
 					event.getReaction().removeReaction(event.getUser()).queue();
 
 					for (TextChannel tc : event.getGuild().getTextChannels())
