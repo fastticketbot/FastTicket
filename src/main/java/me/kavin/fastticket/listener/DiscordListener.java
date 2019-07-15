@@ -93,7 +93,7 @@ public class DiscordListener extends ListenerAdapter {
 					return;
 
 				if (event.getMessageIdLong() == SettingsHelper.getInstance()
-						.getReactionMessageId(event.getGuild().getIdLong())
+						.getReactionMessageId(event.getGuild().getIdLong()) && !event.getReactionEmote().isEmoji()
 						&& event.getReactionEmote().getIdLong() == Constants.EMOJI_ID) {
 					event.getReaction().removeReaction(event.getUser()).queue();
 
