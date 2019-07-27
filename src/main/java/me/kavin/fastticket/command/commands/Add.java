@@ -60,6 +60,12 @@ public class Add extends Command {
 					event.getChannel().sendMessage(meb.build()).queue();
 					return;
 				}
+
+		{
+			EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
+			meb.setDescription("You do not have an open ticket.");
+			event.getChannel().sendMessage(meb.build()).queue();
+		}
 	}
 
 	private long getLong(String s) throws NumberFormatException {
