@@ -18,9 +18,10 @@ Fast Ticket is an open source Discord bot which uses [JDA](https://github.com/DV
 
 - -help : Shows the help message
 - -new : Opens a new ticket
+- -add : Adds a person to your currently open ticket
+- -close : Closes the ticket you type the command in
 - -config : Shows the current configuration
 - -value : Allows you to set config values
-- -close : Closes the ticket you type the command in
 - -emojiopen : Sends a message with a reaction that can be used to open tickets!
 - -stats : Shows the statistics of the bot
 
