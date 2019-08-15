@@ -1,5 +1,6 @@
 package me.kavin.fastticket.command.commands;
 
+import java.io.FileReader;
 import java.lang.management.ManagementFactory;
 import java.text.DecimalFormat;
 
@@ -7,6 +8,8 @@ import javax.management.Attribute;
 import javax.management.AttributeList;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
+
+import org.apache.commons.io.IOUtils;
 
 import me.kavin.fastticket.Main;
 import me.kavin.fastticket.command.Command;
@@ -45,6 +48,9 @@ public class Stats extends Command {
 		meb.addField("Total Memory: ", String.valueOf(totalMemory) + "\n", false);
 		meb.addField("Free Memory: ", String.valueOf(freeMemory) + "\n", false);
 		meb.addField("Used Memory: ", String.valueOf(usedMemory) + "\n", false);
+
+		meb.addField("Version", IOUtils.readLines(new FileReader(".git/FETCH_HEAD")).get(0).substring(0, 7) + "\n",
+				false);
 
 		event.getChannel().sendMessage(meb.build()).queue();
 	}
