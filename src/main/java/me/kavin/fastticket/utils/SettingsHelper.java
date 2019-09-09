@@ -205,4 +205,18 @@ public class SettingsHelper {
 
 		mongoHelper.setValueLong(collection, tc.getGuild().getId(), tc.getIdLong());
 	}
+
+    public boolean getShouldPingOpener(long guildId) {
+		MongoDatabase db = mongoHelper.getDatabase("guilds");
+		MongoCollection<Document> collection = mongoHelper.getCollection(db, "pingopener");
+
+		return mongoHelper.getValueBoolean(collection, String.valueOf(guildId));
+	}
+
+	public void setShouldPingOpener(long guildId, boolean value) {
+		MongoDatabase db = mongoHelper.getDatabase("guilds");
+		MongoCollection<Document> collection = mongoHelper.getCollection(db, "pingopener");
+
+		mongoHelper.setValueBoolean(collection, String.valueOf(guildId), value);
+	}
 }
