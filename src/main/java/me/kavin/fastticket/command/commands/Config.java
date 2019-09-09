@@ -10,40 +10,44 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class Config extends Command {
-	public Config() {
-		super("-config", "`Shows the current configuration`");
-	}
+    public Config() {
+        super("-config", "`Shows the current configuration`");
+    }
 
-	@Override
-	public void onCommand(String message, MessageReceivedEvent event) throws Throwable {
+    @Override
+    public void onCommand(String message, MessageReceivedEvent event) throws Throwable {
 
-		if (!PermissionCheck.doCheck(event.getMember(), event.getTextChannel()))
-			return;
+        if (!PermissionCheck.doCheck(event.getMember(), event.getTextChannel()))
+            return;
 
-		{
-			EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
-			meb.setTitle("Fast Ticket's Configuration:");
+        {
+            EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
+            meb.setTitle("Fast Ticket's Configuration:");
 
-			meb.addField("Color", SettingsHelper.getInstance().getSelectedColor(event.getGuild().getIdLong()), false);
+            meb.addField("Color", SettingsHelper.getInstance().getSelectedColor(event.getGuild().getIdLong()), false);
 
-			TextChannel tc = SettingsHelper.getInstance().getLogsChannel(event.getGuild().getIdLong());
-			meb.addField("Logs Channel", tc != null ? tc.getAsMention() : "Not Set", false);
+            TextChannel tc = SettingsHelper.getInstance().getLogsChannel(event.getGuild().getIdLong());
+            meb.addField("Logs Channel", tc != null ? tc.getAsMention() : "Not Set", false);
 
-			meb.addField("Ticket Open Msg", SettingsHelper.getInstance().getTicketOpenMsg(event.getGuild().getIdLong()),
-					false);
+            meb.addField("Ticket Open Msg", SettingsHelper.getInstance().getTicketOpenMsg(event.getGuild().getIdLong()),
+                    false);
 
-			Role role = SettingsHelper.getInstance().getTicketRole(event.getGuild().getIdLong());
+            Role role = SettingsHelper.getInstance().getTicketRole(event.getGuild().getIdLong());
 
-			meb.addField("Role", role != null ? role.getAsMention() : "Not set", false);
+            meb.addField("Role", role != null ? role.getAsMention() : "Not set", false);
 
-			meb.addField("Open Ticket Tag",
-					String.valueOf(SettingsHelper.getInstance().getShouldPing(event.getGuild().getIdLong())), false);
+            meb.addField("Role Open Ticket Tag",
+                    String.valueOf(SettingsHelper.getInstance().getShouldPing(event.getGuild().getIdLong())), false);
 
-			meb.addField("Reaction Message Id",
-					String.valueOf(SettingsHelper.getInstance().getReactionMessageId(event.getGuild().getIdLong())),
-					false);
+            meb.addField("Reaction Message Id",
+                    String.valueOf(SettingsHelper.getInstance().getReactionMessageId(event.getGuild().getIdLong())),
+                    false);
 
-			event.getChannel().sendMessage(meb.build()).queue();
-		}
-	}
+            meb.addField("Ticket Opener Tag",
+                    String.valueOf(SettingsHelper.getInstance().getShouldPingOpener(event.getGuild().getIdLong())),
+                    false);
+
+            event.getChannel().sendMessage(meb.build()).queue();
+        }
+    }
 }
