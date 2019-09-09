@@ -219,4 +219,18 @@ public class SettingsHelper {
 
 		mongoHelper.setValueBoolean(collection, String.valueOf(guildId), value);
 	}
+
+    public boolean getAutoClose(long guildId) {
+		MongoDatabase db = mongoHelper.getDatabase("guilds");
+		MongoCollection<Document> collection = mongoHelper.getCollection(db, "autoclose");
+
+		return mongoHelper.getValueBoolean(collection, String.valueOf(guildId));
+	}
+
+	public void setAutoClose(long guildId, boolean value) {
+		MongoDatabase db = mongoHelper.getDatabase("guilds");
+		MongoCollection<Document> collection = mongoHelper.getCollection(db, "autoclose");
+
+		mongoHelper.setValueBoolean(collection, String.valueOf(guildId), value);
+	}
 }

@@ -8,8 +8,9 @@ Fast Ticket is an open source Discord bot which uses [JDA](https://github.com/DV
 - Logs Channel: The channel to post ticket logs to.
 - Ticket Open Msg: The message to use when a user opens a ticket.
 - Role: This users with this role can see the ticket.
-- Open Ticket Tag: Whether or not the bot should tag the role (only works if role is set and the bot has correct permissions).
+- Role Open Ticket Tag: Whether or not the bot should tag the role (only works if role is set and the bot has correct permissions).
 - Reaction Message Id: This internal variable stores the message id the bot should look for to be able open a ticket.
+- Ticket Opener Tag: When enzbled, tags the person who opened the ticket.
 
 # Permissions
 - You need the Administrator permission to use commands that can modify bot settings.

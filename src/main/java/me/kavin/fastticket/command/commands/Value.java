@@ -161,6 +161,27 @@ public class Value extends Command {
                         meb.setDescription("No value provided! Allowed values are `true` and `false`");
                 }
                     break;
+
+                case CLOSE_INACTIVE: {
+                    String q = null;
+                    for (int i = (getPrefix() + " " + ValueType.CLOSE_INACTIVE.name()).length() + 1; i < message
+                            .length(); i++) {
+                        if (q == null)
+                            q = "";
+                        q += message.charAt(i);
+                    }
+                    if (q != null) {
+                        try {
+                            boolean b = Boolean.parseBoolean(q);
+                            SettingsHelper.getInstance().setAutoClose(event.getGuild().getIdLong(), b);
+                            meb.setDescription("Set the value to " + b + ".");
+                        } catch (Exception e) {
+                            meb.setDescription("Invalid value. Allowed values are `true` and `false`");
+                        }
+                    } else
+                        meb.setDescription("No value provided! Allowed values are `true` and `false`");
+                }
+                    break;
                 }
             else {
                 StringBuilder sb = new StringBuilder("Please choose one of the choice as your argument: ");
@@ -183,6 +204,6 @@ public class Value extends Command {
     }
 
     private static enum ValueType {
-        COLOR, LOGS, TICKET_OPEN_MSG, ROLE, OPEN_TAG, PING_OPENER
+        COLOR, LOGS, TICKET_OPEN_MSG, ROLE, OPEN_TAG, PING_OPENER, CLOSE_INACTIVE
     }
 }

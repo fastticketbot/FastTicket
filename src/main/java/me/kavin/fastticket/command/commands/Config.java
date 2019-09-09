@@ -47,6 +47,9 @@ public class Config extends Command {
                     String.valueOf(SettingsHelper.getInstance().getShouldPingOpener(event.getGuild().getIdLong())),
                     false);
 
+            meb.addField("Auto Close Inactive",
+                    String.valueOf(SettingsHelper.getInstance().getAutoClose(event.getGuild().getIdLong())), false);
+
             event.getChannel().sendMessage(meb.build()).queue();
         }
     }
