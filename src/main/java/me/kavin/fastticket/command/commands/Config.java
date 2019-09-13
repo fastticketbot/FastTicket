@@ -50,6 +50,9 @@ public class Config extends Command {
             meb.addField("Auto Close Inactive",
                     String.valueOf(SettingsHelper.getInstance().getAutoClose(event.getGuild().getIdLong())), false);
 
+            meb.addField("Force Require Reason",
+                    String.valueOf(SettingsHelper.getInstance().getForceReason(event.getGuild().getIdLong())), false);
+
             event.getChannel().sendMessage(meb.build()).queue();
         }
     }

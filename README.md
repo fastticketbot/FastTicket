@@ -12,6 +12,7 @@ Fast Ticket is an open source Discord bot which uses [JDA](https://github.com/DV
 - Reaction Message Id: This internal variable stores the message id the bot should look for to be able open a ticket.
 - Ticket Opener Tag: When enabled, tags the person who opened the ticket.
 - Auto Close Inactive: When enabled, closes tickets that have no new message in the last 48 hours.
+- Force Require Reason: When enabled, forces users to specify a reason when using commands to create a ticket.
 
 # Permissions
 - You need the Administrator permission to use commands that can modify bot settings.
