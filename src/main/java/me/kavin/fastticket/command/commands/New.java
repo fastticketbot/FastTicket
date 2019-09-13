@@ -38,6 +38,7 @@ public class New extends Command {
             EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
             meb.setDescription("You require a reason as an argument to open a ticket!");
             event.getChannel().sendMessage(meb.build()).queue();
+            return;
         }
 
         TextChannel tc = TicketUtils.createTicket(event.getGuild(), event.getMember(), q);
