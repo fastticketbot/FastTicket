@@ -34,6 +34,12 @@ public class New extends Command {
                     return;
                 }
 
+        if (SettingsHelper.getInstance().getForceReason(event.getGuild().getIdLong()) && q == null) {
+            EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
+            meb.setDescription("You require a reason as an argument to open a ticket!");
+            event.getChannel().sendMessage(meb.build()).queue();
+        }
+
         TextChannel tc = TicketUtils.createTicket(event.getGuild(), event.getMember(), q);
 
         {
