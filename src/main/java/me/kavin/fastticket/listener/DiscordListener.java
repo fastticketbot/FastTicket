@@ -23,6 +23,7 @@ import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.entities.Activity.ActivityType;
 import net.dv8tion.jda.api.entities.ChannelType;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.GuildJoinEvent;
@@ -131,7 +132,7 @@ public class DiscordListener extends ListenerAdapter {
 
                 if (event.getMessageIdLong() == SettingsHelper.getInstance()
                         .getReactionMessageId(event.getGuild().getIdLong()) && !event.getReactionEmote().isEmoji()
-                        && event.getReactionEmote().getIdLong() == Constants.EMOJI_ID) {
+                        && event.getReactionEmote().getIdLong() == Constants.OPEN_EMOJI_ID) {
                     event.getReaction().removeReaction(event.getUser()).queue();
 
                     for (TextChannel tc : event.getGuild().getTextChannels())
@@ -148,6 +149,25 @@ public class DiscordListener extends ListenerAdapter {
                         // ignored
                     }
                 }
+
+                if (!event.getReactionEmote().isEmoji()
+                        && event.getReactionEmote().getIdLong() == Constants.CLOSE_EMOJI_ID) {
+                    TextChannel tc = event.getChannel();
+                    if (tc.getName().startsWith("ticket-") && tc.getTopic() != null
+                            && tc.getTopic().startsWith("ticket|"))
+                        try {
+                            Message msg = event.getChannel().getHistoryAround(event.getMessageIdLong(), 1).submit()
+                                    .get().getRetrievedHistory().get(0);
+                            if (msg.getAuthor().getIdLong() == event.getJDA().getSelfUser().getIdLong()) {
+                                TicketUtils.postLogs("Reacted with emoji", event.getGuild().getIdLong(),
+                                        event.getUser(), event.getJDA().getUserById(tc.getTopic().split("\\|")[1]), tc);
+                                tc.delete().queue();
+                            }
+                        } catch (Exception e) {
+                            // ignored
+                        }
+                }
+
             }
         });
     }

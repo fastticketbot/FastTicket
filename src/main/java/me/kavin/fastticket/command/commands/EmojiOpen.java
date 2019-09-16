@@ -26,7 +26,7 @@ public class EmojiOpen extends Command {
 			EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
 			meb.setTitle("Fast Ticket: Open Ticket");
 
-			Emote emote = Main.api.getEmoteById(Constants.EMOJI_ID);
+			Emote emote = Main.api.getEmoteById(Constants.OPEN_EMOJI_ID);
 
 			meb.setDescription("Click the " + emote.getAsMention() + " to open a ticket!");
 

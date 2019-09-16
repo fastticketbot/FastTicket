@@ -19,7 +19,8 @@ public class Constants {
 		BOT_TOKEN = prop.getProperty("BOT_TOKEN");
 		MONGO_URI = prop.getProperty("MONGO_URI");
 		GITHUB_AUTH_HEADER = prop.getProperty("GITHUB_AUTH_HEADER");
-		EMOJI_ID = Long.parseLong(prop.getProperty("EMOJI_ID"));
+		OPEN_EMOJI_ID = Long.parseLong(prop.getProperty("OPEN_EMOJI_ID"));
+        CLOSE_EMOJI_ID = Long.parseLong(prop.getProperty("CLOSE_EMOJI_ID"));
 		DIVINE_DISCORD_BOTS_TOKEN = prop.getProperty("DIVINE_DISCORD_BOTS_TOKEN");
 		DISCORD_BOTS_TOKEN = prop.getProperty("DISCORD_BOTS_TOKEN");
 	}
@@ -30,7 +31,9 @@ public class Constants {
 
 	public static final String GITHUB_AUTH_HEADER;
 
-	public static final long EMOJI_ID;
+	public static final long OPEN_EMOJI_ID;
+
+    public static final long CLOSE_EMOJI_ID;
 
 	public static final String DIVINE_DISCORD_BOTS_TOKEN;
 
