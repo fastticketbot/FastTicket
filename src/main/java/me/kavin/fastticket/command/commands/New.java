@@ -1,14 +1,10 @@
 package me.kavin.fastticket.command.commands;
 
-import me.kavin.fastticket.Main;
 import me.kavin.fastticket.command.Command;
-import me.kavin.fastticket.consts.Constants;
 import me.kavin.fastticket.utils.EmbedUtils;
 import me.kavin.fastticket.utils.SettingsHelper;
 import me.kavin.fastticket.utils.TicketUtils;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.Emote;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -50,11 +46,7 @@ public class New extends Command {
         {
             EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(event.getGuild().getIdLong());
             meb.setDescription("Opened a new ticket in " + tc.getAsMention() + ".");
-            Message msg = event.getChannel().sendMessage(meb.build()).submit().get();
-
-            Emote emote = Main.api.getEmoteById(Constants.CLOSE_EMOJI_ID);
-
-            msg.addReaction(emote).queue();
+            event.getChannel().sendMessage(meb.build()).queue();
         }
 
         if (SettingsHelper.getInstance().getShouldPingOpener(event.getGuild().getIdLong()))

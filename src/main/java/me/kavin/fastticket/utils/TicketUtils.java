@@ -13,6 +13,7 @@ import me.kavin.fastticket.Main;
 import me.kavin.fastticket.consts.Constants;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.Permission;
+import net.dv8tion.jda.api.entities.Emote;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.Message;
@@ -120,7 +121,12 @@ public class TicketUtils {
 			meb.setDescription(SettingsHelper.getInstance().getTicketOpenMsg(guild.getIdLong())
 					.replace("%user%", member.getUser().getAsTag())
 					.replace("%reason%", reason != null ? reason : "No reason provided!"));
-			tc.sendMessage(meb.build()).queue();
+
+            Message msg = tc.sendMessage(meb.build()).submit().get();
+
+            Emote emote = Main.api.getEmoteById(Constants.CLOSE_EMOJI_ID);
+
+            msg.addReaction(emote).queue();
 		}
 
 		if (role != null && SettingsHelper.getInstance().getShouldPing(guild.getIdLong())) {
