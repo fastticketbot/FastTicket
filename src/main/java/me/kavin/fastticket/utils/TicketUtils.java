@@ -49,25 +49,25 @@ public class TicketUtils {
         for (Message msg : msgs) {
             if (msg.getAuthor().isBot())
                 continue;
-            String content = msg.getContentDisplay().replace("\n", " ").replace("\r", " ");
+            String content = MarkdownUtils.escapeString(msg.getContentDisplay());
             List<Attachment> attachments = msg.getAttachments();
             if (attachments.size() > 0)
                 for (Attachment attachment : attachments)
                     content += " [attachment - " + attachment.getFileName() + "](" + attachment.getUrl() + ")";
-            sb.append(msg.getAuthor().getName() + " | " + content);
+            sb.append(MarkdownUtils.escapeString(msg.getAuthor().getName()) + " | " + content);
             sb.append("\n");
         }
 
         if (opened != null) {
             sb.append("\n\n");
 
-            sb.append("Opened by " + opened.getName());
+            sb.append("Opened by " + MarkdownUtils.escapeString(opened.getName()));
         }
 
         if (closed != null) {
             sb.append("\n\n");
 
-            sb.append("Closed by " + closed.getName());
+            sb.append("Closed by " + MarkdownUtils.escapeString(closed.getName()));
         }
 
         JSONObject resp = new JSONObject(
@@ -76,17 +76,17 @@ public class TicketUtils {
                                 new JSONObject().put("log.md", new JSONObject().put("content", String.valueOf(sb)))))
                         .asString().getBody());
 
-        String logsUrl = resp.getString("html_url") + "#file-log-md";
+        String logsUrl = resp.getString("html_url") + "#fast-ticket";
 
-        logsBuilder.setDescription("Ticket closed by " + closed.getAsTag() + "\n" + "Ticket opened by "
-                + (opened != null ? opened.getAsTag() : "User left") + "\n\n" + "**Reason:**" + "\n"
-                + (reason != null ? reason : "No reason provied") + "\n\n" + "Logs: [click here](" + logsUrl + ")");
+        logsBuilder.setDescription("Ticket closed by " + MarkdownUtils.escapeString(closed.getAsTag()) + "\n" + "Ticket opened by "
+                + (opened != null ? MarkdownUtils.escapeString(opened.getAsTag()) : "User left") + "\n\n" + "**Reason:**" + "\n"
+                + (reason != null ? MarkdownUtils.escapeString(reason) : "No reason provied") + "\n\n" + "Logs: [click here](" + logsUrl + ")");
 
         if (lc != null)
             lc.sendMessage(logsBuilder.build()).queue();
 
         try {
-            if (opened != null)
+            if (opened != null && !opened.isFake())
                 opened.openPrivateChannel().submit().get().sendMessage(logsBuilder.build()).queue();
         } catch (Exception e) {
             // ignored
@@ -119,7 +119,7 @@ public class TicketUtils {
         {
             EmbedBuilder meb = EmbedUtils.getEmptyEmbedBuilder(guild.getIdLong());
             meb.setDescription(SettingsHelper.getInstance().getTicketOpenMsg(guild.getIdLong())
-                    .replace("%user%", member.getUser().getAsTag())
+                    .replace("%user%", MarkdownUtils.escapeString(member.getUser().getAsTag()))
                     .replace("%reason%", reason != null ? reason : "No reason provided!"));
 
             Message msg = tc.sendMessage(meb.build()).submit().get();
