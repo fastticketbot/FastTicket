@@ -8,6 +8,7 @@ import me.kavin.fastticket.command.commands.Config;
 import me.kavin.fastticket.command.commands.EmojiOpen;
 import me.kavin.fastticket.command.commands.Help;
 import me.kavin.fastticket.command.commands.New;
+import me.kavin.fastticket.command.commands.Rename;
 import me.kavin.fastticket.command.commands.Stats;
 import me.kavin.fastticket.command.commands.Value;
 
@@ -23,6 +24,7 @@ public class CommandManager {
 		commands.add(new Config());
 		commands.add(new Value());
 		commands.add(new EmojiOpen());
-		commands.add(new Stats());
+        commands.add(new Stats());
+        commands.add(new Rename());
 	}
 }
