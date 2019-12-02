@@ -27,6 +27,7 @@ Fast Ticket is an open source Discord bot which uses [JDA](https://github.com/DV
 - -value : Allows you to set config values
 - -emojiopen : Sends a message with a reaction that can be used to open tickets!
 - -stats : Shows the statistics of the bot
+- -rename : Renames the current ticket
 
 # You can invite me by clicking [here](https://discordapp.com/oauth2/authorize?client_id=597489932130320384&scope=bot&permissions=1342532688)
 
