@@ -9,6 +9,6 @@ public class MarkdownUtils {
                 .replace(".", "\\.").replace("!", "\\!").replace("_", "\\_").replace("\"", "\\\"").replace("$", "\\$")
                 .replace("%", "\\%").replace("&", "\\&").replace("'", "\\'").replace(",", "\\,").replace("/", "\\/")
                 .replace(":", "\\:").replace(";", "\\;").replace("=", "\\=").replace("?", "\\?").replace("@", "\\@")
-                .replace("^", "\\^").replace("\n", "\\n").replace("\r", "\\r");
+                .replace("^", "\\^").replace("\n", "\\n").replace("\r", "\\r").replace("|", "\\|");
     }
 }
