@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.konghq:unirest-java:3.7.02'
+    implementation 'com.konghq:unirest-java:3.7.03'
     implementation ('net.dv8tion:JDA:4.1.1_165') { exclude module: 'opus-java' }
     implementation 'commons-io:commons-io:2.7'
     implementation 'it.unimi.dsi:fastutil:8.3.1'
