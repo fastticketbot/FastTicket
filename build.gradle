@@ -16,7 +16,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.7'
     implementation 'it.unimi.dsi:fastutil:8.4.1'
     implementation 'org.apache.commons:commons-text:1.9'
-    implementation 'org.mongodb:mongo-java-driver:3.12.6'
+    implementation 'org.mongodb:mongo-java-driver:3.12.7'
 }
 
 shadowJar {
