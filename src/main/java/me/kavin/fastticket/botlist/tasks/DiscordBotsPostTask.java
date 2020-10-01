@@ -13,8 +13,7 @@ public class DiscordBotsPostTask implements Runnable {
 	public void run() {
 		JSONObject obj = new JSONObject().put("server_count", Main.api.getGuilds().size());
 		try {
-			Unirest.post(
-					"https://top.gg/api/bots/" + Main.api.getShards().get(0).getSelfUser().getId() + "/stats")
+			Unirest.post("https://top.gg/api/bots/" + Main.api.getShards().get(0).getSelfUser().getId() + "/stats")
 					.header("Authorization", Constants.DISCORD_BOTS_TOKEN).header("Content-Type", "application/json")
 					.body(obj.toString()).asEmpty();
 		} catch (UnirestException e) {

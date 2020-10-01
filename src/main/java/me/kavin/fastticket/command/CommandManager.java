@@ -14,17 +14,17 @@ import me.kavin.fastticket.command.commands.Value;
 
 public class CommandManager {
 
-    public static ArrayList<Command> commands = new ArrayList<Command>();
+	public static ArrayList<Command> commands = new ArrayList<Command>();
 
-    public CommandManager() {
-        commands.add(new Help());
-        commands.add(new New());
-        commands.add(new Add());
-        commands.add(new Close());
-        commands.add(new Config());
-        commands.add(new Value());
-        commands.add(new EmojiOpen());
-        commands.add(new Stats());
-        commands.add(new Rename());
-    }
+	public CommandManager() {
+		commands.add(new Help());
+		commands.add(new New());
+		commands.add(new Add());
+		commands.add(new Close());
+		commands.add(new Config());
+		commands.add(new Value());
+		commands.add(new EmojiOpen());
+		commands.add(new Stats());
+		commands.add(new Rename());
+	}
 }
