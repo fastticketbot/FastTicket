@@ -14,7 +14,7 @@ dependencies {
     implementation 'com.konghq:unirest-java:3.11.11'
     implementation ('net.dv8tion:JDA:4.2.0_247') { exclude module: 'opus-java' }
     implementation 'commons-io:commons-io:2.8.0'
-    implementation 'it.unimi.dsi:fastutil:8.5.2'
+    implementation 'it.unimi.dsi:fastutil:8.5.4'
     implementation 'org.apache.commons:commons-text:1.9'
     implementation 'org.mongodb:mongo-java-driver:3.12.8'
 }
